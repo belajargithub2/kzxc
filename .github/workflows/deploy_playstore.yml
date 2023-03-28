@@ -1,0 +1,73 @@
+name: Flutter Build APK
+
+on:
+  push:
+    branches:
+      - mainx
+  workflow_dispatch:
+#     inputs:
+#       environment:
+#         type: string
+#         default: TEST
+#         required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@main
+        
+      - name: Setup Java
+        uses: actions/setup-java@main
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+      
+      - name: Check Flutter Version
+        run: flutter --version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Generate signed keystore
+        run: |
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
+          echo "storePassword=${{ secrets.STORE_PASS }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.KEY_PASS }}" >> android/key.properties
+
+      - name: Generate keystore
+        run: echo "${{ secrets.KEYSTORE_ML }}" | base64 --decode > android/app/keystore.jks
+        
+      - name: Build AAB
+        run: flutter build appbundle --release
+
+      - name: Setup Output AAB
+        id: artifact
+        run: |
+          echo "aab=build/app/outputs/bundle/release/app-release.aab" >> $GITHUB_OUTPUT
+
+      - name: Upload AAB to github
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-aab
+          path: ${{ steps.artifact.outputs.aab }}
+
+      - name: Upload AAB to playstore
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON_ML }}
+          packageName: bit.wallpapers.ml
+          releaseFiles: ${{ steps.artifact.outputs.aab }}
+          track: production
+          status: draft
+          inAppUpdatePriority: 0
+          whatsNewDirectory: distribution/whatsnew
+          mappingFile: build/app/outputs/mapping/release/mapping.txt
+          debugSymbols: build/app/intermediates/merged_native_libs/release/out/lib

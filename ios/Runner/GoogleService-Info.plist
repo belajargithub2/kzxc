@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>323011162932-930dr62gcasn9jb848kp24e0cr0c4mrp.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.323011162932-930dr62gcasn9jb848kp24e0cr0c4mrp</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDtX79_AN23GoQZS-uqRayRe94X27113ic</string>
+	<key>GCM_SENDER_ID</key>
+	<string>323011162932</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.gallery</string>
+	<key>PROJECT_ID</key>
+	<string>ibagus-wallpapers</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ibagus-wallpapers.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:323011162932:ios:7e96f33a39e9464e4cab61</string>
+</dict>
+</plist>
