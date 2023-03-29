@@ -66,7 +66,7 @@ jobs:
           packageName: com.wallpapers.aesthetics
           releaseFiles: ${{ steps.artifact.outputs.aab }}
           track: production
-          status: completed
+          status: draft
           changesNotSentForReview: true
           inAppUpdatePriority: 0
           whatsNewDirectory: distribution/whatsnew
