@@ -1,4 +1,4 @@
-package bit.wallpapers.ml
+package com.wallpapers.aesthetics
 
 import io.flutter.embedding.android.FlutterActivity
 
