@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-String appName = "Atlantis Wallpapers HD";
-Color primaryColor = const Color(0xFF085DAD);
-Color secondaryColor = const Color(0xFF21BEDE);
-String search = "atlantis";
+String appName = "CRonaldo Wallpapers HD";
+Color primaryColor = const Color(0xFF4f4faf);
+Color secondaryColor = const Color(0xFF181835);
+String search = "ronaldo";
