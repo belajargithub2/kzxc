@@ -1,4 +1,4 @@
-package com.wallpapers.ff
+package com.wallpapers.fish
 
 import io.flutter.embedding.android.FlutterActivity
 
