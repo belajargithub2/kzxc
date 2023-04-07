@@ -1,4 +1,4 @@
-package com.wallpapers.lmessi
+package bit.wallpapers.gif
 
 import io.flutter.embedding.android.FlutterActivity
 

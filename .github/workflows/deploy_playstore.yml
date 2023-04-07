@@ -43,7 +43,7 @@ jobs:
           echo "keyPassword=${{ secrets.KEY_PASS }}" >> android/key.properties
 
       - name: Generate keystore
-        run: echo "${{ secrets.KEYSTORE_MESSI }}" | base64 --decode > android/app/keystore.jks
+        run: echo "${{ secrets.KEYSTORE_BIT_GIF }}" | base64 --decode > android/app/keystore.jks
         
       - name: Build AAB
         run: flutter build appbundle --release
@@ -62,8 +62,8 @@ jobs:
       - name: Upload AAB to playstore
         uses: r0adkll/upload-google-play@v1
         with:
-          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON_AES }}
-          packageName: com.wallpapers.lmessi
+          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON_BIT }}
+          packageName: bit.wallpapers.gif
           releaseFiles: ${{ steps.artifact.outputs.aab }}
           track: production
           status: draft
