@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="bit.wallpapers.gif">
+    package="bit.wallpapers.hp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
@@ -8,10 +8,10 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="Gif Wallpapers HD">
+        android:label="Harry P Hogwarts Wallpapers HD">
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-2024732515687909~3164631764" />
+            android:value="ca-app-pub-2024732515687909~1322686466" />
 <!--            android:value="ca-app-pub-3940256099942544~3347511713" />-->
         <activity
             android:name=".MainActivity"
