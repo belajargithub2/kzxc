@@ -1,4 +1,4 @@
-package com.wallpapers.wonderland
+package com.wallpapers.dope
 
 import io.flutter.embedding.android.FlutterActivity
 
