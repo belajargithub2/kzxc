@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:wallpapers/app/utils/cryptography.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
@@ -24,5 +25,12 @@ void main() {
     // Verify that our counter has incremented.
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
+  });
+
+  test("CRYPTO", () {
+    String e = Cryptography.encrypt("lexica-aperture-v2");
+    String d = Cryptography.decrypt(e);
+    print("EEEEE : $e");
+    print("DDDDD : $d");
   });
 }
