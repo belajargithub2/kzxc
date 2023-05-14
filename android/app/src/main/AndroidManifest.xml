@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="bit.wallpapers.ff">
+    package="com.wallpapers.natures">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
@@ -8,10 +8,10 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="FF Wallpapers 4K">
+        android:label="Natures Wallpapers 4K">
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-2024732515687909~4526927433" />
+            android:value="ca-app-pub-2024732515687909~4808638501" />
 <!--            android:value="ca-app-pub-3940256099942544~3347511713" />-->
         <activity
             android:name=".MainActivity"
