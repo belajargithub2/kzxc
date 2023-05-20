@@ -1,4 +1,4 @@
-package com.wallpapers.andbackgrounds
+package com.wallpapers.unicorns
 
 import io.flutter.embedding.android.FlutterActivity
 

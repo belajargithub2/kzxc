@@ -96,12 +96,7 @@ class HomeView extends GetView<HomeController> {
 
   Widget _banner() {
     return Obx(
-      () => controller.bannerLoaded.isFalse
-          ? const SizedBox()
-          : SizedBox(
-              height: controller.banner?.size.height.toDouble(),
-              child: controller.getBanner(),
-            ),
+      () => controller.getBanner(),
     );
   }
 }
