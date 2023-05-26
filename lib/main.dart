@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:upgrader/upgrader.dart';
 
 import 'app/routes/app_pages.dart';
 import 'app/utils/app_theme.dart';
@@ -22,11 +23,13 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-    GetMaterialApp(
-      title: "Wallpaper App",
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
-      theme: AppTheme.lightTheme,
+    UpgradeAlert(
+      child: GetMaterialApp(
+        title: "Wallpaper App",
+        initialRoute: AppPages.INITIAL,
+        getPages: AppPages.routes,
+        theme: AppTheme.lightTheme,
+      ),
     ),
   );
 }
