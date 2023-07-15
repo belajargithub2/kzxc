@@ -1,5 +1,5 @@
 name: wallpapers
-version: 3.0.0+3
+version: 3.2.1+4
 publish_to: none
 description: Free Wallpaper HD.
 environment: 
@@ -20,6 +20,9 @@ dependencies:
   firebase_database: ^10.0.8
   google_mobile_ads: ^2.2.0
   firebase_analytics: ^10.0.6
+  startapp_sdk: ^0.4.1
+  upgrader: ^6.5.0
+  encrypt: ^5.0.1
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
