@@ -3,10 +3,10 @@ import 'package:wallpapers/app/data/randoms.dart';
 
 class Admob {
   static List<String> banners = [
-    'ca-app-pub-2024732515687909/5183500106',
+    'ca-app-pub-2024732515687909/3400237381',
   ];
   static List<String> interstitials = [
-    'ca-app-pub-2024732515687909/2444536566',
+    'ca-app-pub-2024732515687909/7147910703',
   ];
 
   static String getBannerId() {
@@ -25,7 +25,7 @@ class Admob {
     return [
       'insurance',
       'mesothelioma',
-      'car',
+      'car crash',
     ];
   }
 }
