@@ -44,7 +44,7 @@ jobs:
           echo "keyPassword=${{ secrets.KEY_PASS }}" >> android/key.properties
 
       - name: Generate keystore
-        run: echo "${{ secrets.KEYSTORE_BIT_HW }}" | base64 --decode > android/app/keystore.jks
+        run: echo "${{ secrets.KEYSTORE_HW }}" | base64 --decode > android/app/keystore.jks
         
       - name: Build AAB
         run: flutter build appbundle --release
@@ -63,8 +63,8 @@ jobs:
       - name: Upload AAB to playstore
         uses: r0adkll/upload-google-play@v1
         with:
-          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON_BIT }}
-          packageName: bit.wallpapers.hogwarts
+          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+          packageName: com.wallpapers.hogwarts
           releaseFiles: ${{ steps.artifact.outputs.aab }}
           track: internal
           status: completed
