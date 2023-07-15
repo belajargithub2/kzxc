@@ -68,7 +68,7 @@ jobs:
           releaseFiles: ${{ steps.artifact.outputs.aab }}
           track: production
           status: draft
-          changesNotSentForReview: false
+          changesNotSentForReview: true
           inAppUpdatePriority: 0
           whatsNewDirectory: distribution/whatsnew
           mappingFile: build/app/outputs/mapping/release/mapping.txt
