@@ -25,10 +25,7 @@ class Admob {
     return [
       'insurance',
       'mesothelioma',
-      'car',
-      'compare',
-      'google',
-      'google meet'
+      'car crash',
     ];
   }
 }
