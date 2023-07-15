@@ -135,6 +135,8 @@ class HomeController extends GetxController {
 
   @override
   void dispose() {
+    startBan.value?.dispose();
+    startInt.value?.dispose();
     banner?.dispose();
     interstitial?.dispose();
     printInfo(info: 'dispose');
