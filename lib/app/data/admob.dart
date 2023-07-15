@@ -26,9 +26,6 @@ class Admob {
       'insurance',
       'mesothelioma',
       'car',
-      'compare',
-      'google',
-      'google meet'
     ];
   }
 }

@@ -1,12 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
-import '../controllers/detail_controller.dart';
+import 'package:wallpapers/app/modules/detail/controllers/detail_controller.dart';
 
 class DetailView extends GetView<DetailController> {
   const DetailView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +29,7 @@ class DetailView extends GetView<DetailController> {
             margin: const EdgeInsets.all(50),
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             decoration: BoxDecoration(
-              color: Colors.white24,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(20),
             ),
             child: InkWell(

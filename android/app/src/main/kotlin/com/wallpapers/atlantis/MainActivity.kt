@@ -1,4 +1,4 @@
-package com.wallpapers.wonderland
+package com.wallpapers.atlantis
 
 import io.flutter.embedding.android.FlutterActivity
 
