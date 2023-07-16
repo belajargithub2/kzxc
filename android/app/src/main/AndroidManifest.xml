@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="bit.wallpapers.hogwarts">
+    package="bit.wallpapers.ml">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
@@ -8,10 +8,27 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="Hogwarts Wallpapers HD">
+        android:label="AI Wallpapers 4K">
+        <!-- TODO replace STARTAPP with actual value -->
+        <meta-data
+            android:name="com.startapp.sdk.APPLICATION_ID"
+            android:value="204368196" />
+        <!-- TODO Return Ad controlled by the android:value below -->
+        <meta-data
+            android:name="com.startapp.sdk.RETURN_ADS_ENABLED"
+            android:value="false" />
+        <!-- TODO Splash Ad controlled by the android:value below -->
+        <provider
+            android:authorities="com.startapp.flutter.sdk.${applicationId}"
+            android:name="com.startapp.flutter.sdk.StartAppFlutterHelper"
+            android:exported="false">
+            <meta-data
+                android:name="com.startapp.sdk.SPLASH_ADS_ENABLED"
+                android:value="false" />
+        </provider>
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-2024732515687909~4526927433" />
+            android:value="ca-app-pub-2024732515687909~2310314551" />
 <!--            android:value="ca-app-pub-3940256099942544~3347511713" />-->
         <activity
             android:name=".MainActivity"

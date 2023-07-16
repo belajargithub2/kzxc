@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:startapp_sdk/startapp.dart';
 import 'package:wallpapers/app/data/admob.dart';
 import 'package:wallpapers/app/modules/home/models/picture_model.dart';
 import 'package:wallpapers/app/modules/home/providers/related_provider.dart';
@@ -30,15 +31,41 @@ class HomeController extends GetxController {
   int cc = 0;
   final bannerLoaded = false.obs;
 
+  //startapp
+  var startAppSdk = StartAppSdk();
+  final startBan = Rxn<StartAppBannerAd>();
+  final startInt = Rxn<StartAppInterstitialAd>();
+
   @override
   void onInit() async {
     super.onInit();
+    await startAppBan();
+    await startAppInt();
     await _banner();
     await _interstitial();
     _fetchPage(keyword);
     //data
     pagingController.addPageRequestListener((pageKey) {
+      showInterstitial();
       _fetchPage(keyword);
+    });
+  }
+
+  //startapp setting
+  Future<void> startAppBan() async {
+    // TODO make sure to comment out this line before release
+    startAppSdk.setTestAdsEnabled(false);
+    // TODO use one of the following types: BANNER, MREC, COVER
+    startBan.value = await startAppSdk.loadBannerAd(StartAppBannerType.BANNER);
+  }
+
+  Future<void> startAppInt() async {
+    startAppSdk.loadInterstitialAd().then((interstitialAd) {
+      startInt.value = interstitialAd;
+    }).onError((ex, stackTrace) {
+      debugPrint("Error loading Interstitial ad: $ex");
+    }).onError((error, stackTrace) {
+      debugPrint("Error loading Interstitial ad: $error");
     });
   }
 
@@ -108,6 +135,8 @@ class HomeController extends GetxController {
 
   @override
   void dispose() {
+    startBan.value?.dispose();
+    startInt.value?.dispose();
     banner?.dispose();
     interstitial?.dispose();
     printInfo(info: 'dispose');
@@ -147,8 +176,18 @@ class HomeController extends GetxController {
     await banner?.load();
   }
 
-  AdWidget getBanner() {
-    return AdWidget(ad: banner!);
+  Widget getBanner() {
+    try {
+      if (bannerLoaded.isTrue) {
+        return SizedBox(
+          height: banner?.size.height.toDouble(),
+          child: AdWidget(ad: banner!),
+        );
+      }
+      return StartAppBanner(startBan.value!);
+    } catch (e) {
+      return const SizedBox();
+    }
   }
 
   /* INTERSTITIAL AD */
@@ -199,7 +238,18 @@ class HomeController extends GetxController {
 
   Future<void> showInterstitial() async {
     if (cc >= 2) {
-      interstitial?.show();
+      if (interstitial == null) {
+        startInt.value?.show().then((shown) {
+          if (shown) {
+            startInt.value = null;
+            startAppInt();
+          }
+        }).onError((error, stackTrace) {
+          debugPrint("Error showing Interstitial ad: $error");
+        });
+      } else {
+        interstitial?.show();
+      }
     } else {
       cc++;
     }
