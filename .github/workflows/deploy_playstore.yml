@@ -67,7 +67,7 @@ jobs:
           packageName: com.wallpapers.ff
           releaseFiles: ${{ steps.artifact.outputs.aab }}
           track: internal
-          status: complete
+          status: completed
           changesNotSentForReview: true
           inAppUpdatePriority: 0
           whatsNewDirectory: distribution/whatsnew
