@@ -44,7 +44,7 @@ jobs:
           echo "keyPassword=${{ secrets.KEY_PASS }}" >> android/key.properties
 
       - name: Generate keystore
-        run: echo "${{ secrets.KEYSTORE_UNICORN }}" | base64 --decode > android/app/keystore.jks
+        run: echo "${{ secrets.KEYSTORE_LOVE }}" | base64 --decode > android/app/keystore.jks
         
       - name: Build AAB
         run: flutter build appbundle --release
@@ -64,10 +64,10 @@ jobs:
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON_HB }}
-          packageName: com.wallpapers.unicorns
+          packageName: com.wallpapers.love
           releaseFiles: ${{ steps.artifact.outputs.aab }}
           track: internal
-          status: draft
+          status: completed
           changesNotSentForReview: true
           inAppUpdatePriority: 0
           whatsNewDirectory: distribution/whatsnew
