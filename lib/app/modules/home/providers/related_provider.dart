@@ -1,17 +1,20 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:wallpapers/app/data/settings.dart';
-import 'package:wallpapers/app/modules/home/models/picture_model.dart';
 import 'package:wallpapers/app/utils/cryptography.dart';
 
-class WallProvider extends GetConnect {
+class RelatedProvider extends GetConnect {
   @override
   void onInit() {
     httpClient.defaultDecoder = (map) {
       if (map is Map<String, dynamic>) {
-        return PictureModel.fromJson(map);
+        var list = [];
+        map.forEach((_, value) => list.add("$value"));
+        return list;
       }
       if (map is List) {
-        return map.map((item) => PictureModel.fromJson(item)).toList();
+        return map;
       }
     };
     httpClient.defaultContentType = "application/json";
@@ -20,21 +23,21 @@ class WallProvider extends GetConnect {
       request.headers.addAll(headers);
       return request;
     });
-    httpClient.baseUrl = Cryptography.decrypt(uriw);
+    httpClient.baseUrl = Cryptography.decrypt(urir);
   }
 
-  Future<PictureModel> findWall(String keyword, int page) async {
+  Future<List<String>> getRelated(String keyword) async {
     Map<String, dynamic> body = {
-      "text": keyword,
-      "searchMode": "images",
-      "source": "search",
-      "cursor": page,
-      "model": Cryptography.decrypt(mod)
+      'query': keyword,
     };
-    final res = await post('/api/infinite-prompts', body);
+    final res = await post('/api/related', body);
+    var list = <String>[];
     if (res.body == null) {
-      return PictureModel();
+      return list;
     }
-    return res.body;
+    (jsonDecode("${res.bodyString}")).forEach((element) {
+      list.add(element);
+    });
+    return list;
   }
 }
