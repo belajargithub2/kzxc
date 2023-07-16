@@ -1,16 +1,32 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:upgrader/upgrader.dart';
 import 'package:wallpapers/app/modules/home/controllers/home_controller.dart';
-import 'package:wallpapers/app/modules/home/models/image_model.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:wallpapers/app/modules/home/models/picture_model.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    return UpgradeAlert(
+      upgrader: Upgrader(
+        showIgnore: false,
+        showLater: false,
+        showReleaseNotes: false,
+        shouldPopScope: () => false,
+        dialogStyle: UpgradeDialogStyle.cupertino,
+        minAppVersion: '3.2.1',
+        messages: UpgraderMessages(code: 'en'),
+      ),
+      child: _body(),
+    );
+  }
+
+  Widget _body() {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
@@ -30,7 +46,7 @@ class HomeView extends GetView<HomeController> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              height: 30,
+              height: controller.related.isEmpty ? 0 : 30,
               margin: const EdgeInsets.all(5),
               child: ListView.separated(
                 itemBuilder: (_, i) => _related(controller.related[i]),
@@ -96,12 +112,9 @@ class HomeView extends GetView<HomeController> {
 
   Widget _banner() {
     return Obx(
-          () => controller.bannerLoaded.isFalse
-          ? const SizedBox()
-          : SizedBox(
-        height: controller.banner?.size.height.toDouble(),
-        child: controller.getBanner(),
-      ),
+      () {
+        return controller.getBanner();
+      },
     );
   }
 }
