@@ -1,11 +1,13 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:startapp_sdk/startapp.dart';
 import 'package:wallpapers/app/data/admob.dart';
-import 'package:wallpapers/app/modules/home/models/image_model.dart';
+import 'package:wallpapers/app/modules/home/models/picture_model.dart';
+import 'package:wallpapers/app/modules/home/providers/related_provider.dart';
 import 'package:wallpapers/app/modules/home/providers/wall_provider.dart';
 import 'package:wallpapers/app/routes/app_pages.dart';
-import 'package:wallpapers/app/utils/settings.dart';
+import 'package:wallpapers/app/data/settings.dart';
 import 'package:wallpapers/app/utils/toast.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -14,11 +16,12 @@ class HomeController extends GetxController {
   final isSearch = false.obs;
   final focusNode = FocusNode();
   late String keyword = search;
-  final page = 1.obs;
+  final page = 0.obs;
   final pageSize = 10;
   final PagingController<int, Images> pagingController =
       PagingController(firstPageKey: 0);
   final wallProvider = Get.find<WallProvider>();
+  final relatedProvider = Get.find<RelatedProvider>();
   final related = <String>[].obs;
 
   // admon setting
@@ -28,30 +31,58 @@ class HomeController extends GetxController {
   int cc = 0;
   final bannerLoaded = false.obs;
 
+  //startapp
+  var startAppSdk = StartAppSdk();
+  final startBan = Rxn<StartAppBannerAd>();
+  final startInt = Rxn<StartAppInterstitialAd>();
+
   @override
   void onInit() async {
     super.onInit();
+    await startAppBan();
+    await startAppInt();
     await _banner();
     await _interstitial();
-    _fetchPage(keyword, page.value);
+    _fetchPage(keyword);
     //data
     pagingController.addPageRequestListener((pageKey) {
-      _fetchPage(keyword, pageKey);
+      showInterstitial();
+      _fetchPage(keyword);
     });
   }
 
-  Future<void> _fetchPage(String keyword, int pageKey) async {
+  //startapp setting
+  Future<void> startAppBan() async {
+    // TODO make sure to comment out this line before release
+    startAppSdk.setTestAdsEnabled(false);
+    // TODO use one of the following types: BANNER, MREC, COVER
+    startBan.value = await startAppSdk.loadBannerAd(StartAppBannerType.BANNER);
+  }
+
+  Future<void> startAppInt() async {
+    startAppSdk.loadInterstitialAd().then((interstitialAd) {
+      startInt.value = interstitialAd;
+    }).onError((ex, stackTrace) {
+      debugPrint("Error loading Interstitial ad: $ex");
+    }).onError((error, stackTrace) {
+      debugPrint("Error loading Interstitial ad: $error");
+    });
+  }
+
+  Future<void> _fetchPage(String keyword) async {
     try {
-      final newItems = await wallProvider.findWall(keyword, pageKey);
-      related(newItems.related);
+      final newItems = await wallProvider.findWall(keyword, page.value);
+      final newRelateds = await relatedProvider.getRelated(keyword);
+      related(newRelateds);
+      page(newItems.nextCursor);
       final isLastPage = newItems.images!.length < pageSize;
       if (isLastPage) {
         pagingController.appendLastPage(newItems.images!);
       } else {
-        final nextPageKey = pageKey + newItems.images!.length ~/ 10;
+        final nextPageKey = (page.value + newItems.images!.length) ~/ 10;
         pagingController.appendPage(newItems.images!, nextPageKey);
       }
-    } catch (_) {
+    } catch (e) {
       pagingController.itemList = [];
     }
   }
@@ -104,6 +135,8 @@ class HomeController extends GetxController {
 
   @override
   void dispose() {
+    startBan.value?.dispose();
+    startInt.value?.dispose();
     banner?.dispose();
     interstitial?.dispose();
     printInfo(info: 'dispose');
@@ -143,8 +176,18 @@ class HomeController extends GetxController {
     await banner?.load();
   }
 
-  AdWidget getBanner() {
-    return AdWidget(ad: banner!);
+  Widget getBanner() {
+    try {
+      if (bannerLoaded.isTrue) {
+        return SizedBox(
+          height: banner?.size.height.toDouble(),
+          child: AdWidget(ad: banner!),
+        );
+      }
+      return StartAppBanner(startBan.value!);
+    } catch (e) {
+      return const SizedBox();
+    }
   }
 
   /* INTERSTITIAL AD */
@@ -195,7 +238,18 @@ class HomeController extends GetxController {
 
   Future<void> showInterstitial() async {
     if (cc >= 2) {
-      interstitial?.show();
+      if (interstitial == null) {
+        startInt.value?.show().then((shown) {
+          if (shown) {
+            startInt.value = null;
+            startAppInt();
+          }
+        }).onError((error, stackTrace) {
+          debugPrint("Error showing Interstitial ad: $error");
+        });
+      } else {
+        interstitial?.show();
+      }
     } else {
       cc++;
     }
