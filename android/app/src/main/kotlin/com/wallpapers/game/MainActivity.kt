@@ -1,4 +1,4 @@
-package com.wallpapers.hogwarts
+package com.wallpapers.game
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -19,7 +19,7 @@ class HomeView extends GetView<HomeController> {
         showReleaseNotes: false,
         shouldPopScope: () => false,
         dialogStyle: UpgradeDialogStyle.cupertino,
-        minAppVersion: '6.2.1',
+        minAppVersion: '3.2.1',
         messages: UpgraderMessages(code: 'en'),
       ),
       child: _body(),
