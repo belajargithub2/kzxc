@@ -56,13 +56,7 @@ class HomeController extends GetxController {
     // TODO make sure to comment out this line before release
     startAppSdk.setTestAdsEnabled(false);
     // TODO use one of the following types: BANNER, MREC, COVER
-    startAppSdk.loadBannerAd(StartAppBannerType.BANNER).then((bannerAd) {
-      startBan.value = bannerAd;
-    }).onError<StartAppException>((ex, stackTrace) {
-      debugPrint("Error loading Banner ad: ${ex.message}");
-    }).onError((error, stackTrace) {
-      debugPrint("Error loading Banner ad: $error");
-    });
+    startBan.value = await startAppSdk.loadBannerAd(StartAppBannerType.BANNER);
   }
 
   Future<void> startAppInt() async {
@@ -141,6 +135,8 @@ class HomeController extends GetxController {
 
   @override
   void dispose() {
+    startBan.value?.dispose();
+    startInt.value?.dispose();
     banner?.dispose();
     interstitial?.dispose();
     printInfo(info: 'dispose');
@@ -181,13 +177,17 @@ class HomeController extends GetxController {
   }
 
   Widget getBanner() {
-    if (bannerLoaded.isTrue) {
-      return SizedBox(
-        height: banner?.size.height.toDouble(),
-        child: AdWidget(ad: banner!),
-      );
+    try {
+      if (bannerLoaded.isTrue) {
+        return SizedBox(
+          height: banner?.size.height.toDouble(),
+          child: AdWidget(ad: banner!),
+        );
+      }
+      return StartAppBanner(startBan.value!);
+    } catch (e) {
+      return const SizedBox();
     }
-    return StartAppBanner(startBan.value!);
   }
 
   /* INTERSTITIAL AD */

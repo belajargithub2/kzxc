@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:upgrader/upgrader.dart';
 import 'package:wallpapers/app/modules/home/controllers/home_controller.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -11,6 +12,21 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    return UpgradeAlert(
+      upgrader: Upgrader(
+        showIgnore: false,
+        showLater: false,
+        showReleaseNotes: false,
+        shouldPopScope: () => false,
+        dialogStyle: UpgradeDialogStyle.cupertino,
+        minAppVersion: '4.2.1',
+        messages: UpgraderMessages(code: 'en'),
+      ),
+      child: _body(),
+    );
+  }
+
+  Widget _body() {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
@@ -96,7 +112,9 @@ class HomeView extends GetView<HomeController> {
 
   Widget _banner() {
     return Obx(
-      () => controller.getBanner(),
+      () {
+        return controller.getBanner();
+      },
     );
   }
 }
