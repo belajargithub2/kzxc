@@ -64,7 +64,7 @@ jobs:
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON_HB }}
-          packageName: com.wallpapers.girl
+          packageName: com.wallpapers.forgirls
           releaseFiles: ${{ steps.artifact.outputs.aab }}
           track: internal
           status: completed
