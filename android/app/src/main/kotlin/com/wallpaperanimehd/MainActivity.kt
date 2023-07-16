@@ -1,4 +1,4 @@
-package com.wallpapers.aesthetics
+package com.wallpaperanimehd
 
 import io.flutter.embedding.android.FlutterActivity
 

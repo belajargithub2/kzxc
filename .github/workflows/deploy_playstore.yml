@@ -44,7 +44,7 @@ jobs:
           echo "keyPassword=${{ secrets.KEY_PASS }}" >> android/key.properties
 
       - name: Generate keystore
-        run: echo "${{ secrets.KEYSTORE_AES }}" | base64 --decode > android/app/keystore.jks
+        run: echo "${{ secrets.KEYSTORE_ANIME }}" | base64 --decode > android/app/keystore.jks
         
       - name: Build AAB
         run: flutter build appbundle --release
@@ -64,7 +64,7 @@ jobs:
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON_HB }}
-          packageName: com.wallpapers.aesthetics
+          packageName: com.wallpaperanimehd
           releaseFiles: ${{ steps.artifact.outputs.aab }}
           track: internal
           status: completed
