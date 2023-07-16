@@ -27,6 +27,7 @@ jobs:
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.7.12'
           channel: 'stable'
           cache: true
       
@@ -62,11 +63,11 @@ jobs:
       - name: Upload AAB to playstore
         uses: r0adkll/upload-google-play@v1
         with:
-          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON_AES }}
+          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON_HB }}
           packageName: com.wallpapers.aesthetics
           releaseFiles: ${{ steps.artifact.outputs.aab }}
-          track: production
-          status: draft
+          track: internal
+          status: completed
           changesNotSentForReview: true
           inAppUpdatePriority: 0
           whatsNewDirectory: distribution/whatsnew

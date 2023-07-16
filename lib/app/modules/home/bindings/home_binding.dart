@@ -1,3 +1,4 @@
+import 'package:wallpapers/app/modules/home/providers/related_provider.dart';
 import 'package:wallpapers/app/modules/home/providers/wall_provider.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +9,9 @@ class HomeBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<WallProvider>(
       () => WallProvider(),
+    );
+    Get.lazyPut<RelatedProvider>(
+      () => RelatedProvider(),
     );
     Get.lazyPut<HomeController>(
       () => HomeController(),
