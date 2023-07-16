@@ -67,7 +67,7 @@ jobs:
           packageName: com.wallpapers.andbackgrounds
           releaseFiles: ${{ steps.artifact.outputs.aab }}
           track: internal
-          status: draft
+          status: completed
           changesNotSentForReview: false
           inAppUpdatePriority: 0
           whatsNewDirectory: distribution/whatsnew
