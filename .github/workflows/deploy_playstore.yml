@@ -27,6 +27,7 @@ jobs:
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.7.12'
           channel: 'stable'
           cache: true
       
@@ -65,9 +66,9 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON_BIT }}
           packageName: bit.wallpapers.hp
           releaseFiles: ${{ steps.artifact.outputs.aab }}
-          track: production
-          status: draft
-          changesNotSentForReview: false
+          track: internal
+          status: completed
+          changesNotSentForReview: true
           inAppUpdatePriority: 0
           whatsNewDirectory: distribution/whatsnew
           mappingFile: build/app/outputs/mapping/release/mapping.txt
