@@ -20,7 +20,7 @@ class WallProvider extends GetConnect {
       request.headers.addAll(headers);
       return request;
     });
-    httpClient.baseUrl = Cryptography.decrypt(uriw);
+    httpClient.baseUrl = Cryptography.decryptFernet(uriw);
   }
 
   Future<PictureModel> findWall(String keyword, int page) async {
@@ -29,7 +29,7 @@ class WallProvider extends GetConnect {
       "searchMode": "images",
       "source": "search",
       "cursor": page,
-      "model": Cryptography.decrypt(mod)
+      "model": Cryptography.decryptFernet(mod)
     };
     final res = await post('/api/infinite-prompts', body);
     if (res.body == null) {

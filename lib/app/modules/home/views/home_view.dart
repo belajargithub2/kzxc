@@ -8,7 +8,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:wallpapers/app/modules/home/models/picture_model.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class HomeView extends GetView<HomeController> {
         showReleaseNotes: false,
         shouldPopScope: () => false,
         dialogStyle: UpgradeDialogStyle.cupertino,
-        minAppVersion: '3.2.1',
+        minAppVersion: '6.2.1',
         messages: UpgraderMessages(code: 'en'),
       ),
       child: _body(),

@@ -53,11 +53,10 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAsJtH0AkSPHzZTx5VUbbg1d_wBfFMoFYg',
-    appId: '1:466221423025:android:8cbf30e5a2492e003d4590',
-    messagingSenderId: '466221423025',
-    projectId: 'bitplaystore-dca1c',
-    databaseURL: 'https://bitplaystore-dca1c-default-rtdb.firebaseio.com',
-    storageBucket: 'bitplaystore-dca1c.appspot.com',
+    apiKey: 'AIzaSyC7-QcGEYQkbbmFlm6pS3ubyQqX0Zb62PY',
+    appId: '1:260814029436:android:9bbfd3b7473a86c1b73ff9',
+    messagingSenderId: '260814029436',
+    projectId: 'wallpapers-68cb6',
+    storageBucket: 'wallpapers-68cb6.appspot.com',
   );
 }

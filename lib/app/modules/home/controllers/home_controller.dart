@@ -1,4 +1,3 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:startapp_sdk/startapp.dart';
@@ -25,7 +24,6 @@ class HomeController extends GetxController {
   final related = <String>[].obs;
 
   // admon setting
-  final db = FirebaseDatabase.instance;
   BannerAd? banner;
   InterstitialAd? interstitial;
   int cc = 0;
@@ -53,9 +51,7 @@ class HomeController extends GetxController {
 
   //startapp setting
   Future<void> startAppBan() async {
-    // TODO make sure to comment out this line before release
     startAppSdk.setTestAdsEnabled(false);
-    // TODO use one of the following types: BANNER, MREC, COVER
     startBan.value = await startAppSdk.loadBannerAd(StartAppBannerType.BANNER);
   }
 
@@ -250,7 +246,6 @@ class HomeController extends GetxController {
       } else {
         interstitial?.show();
       }
-      cc = 0;
     } else {
       cc++;
     }

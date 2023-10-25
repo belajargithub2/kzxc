@@ -24,4 +24,19 @@ class Cryptography {
 
     return decrypted;
   }
+
+  static String encryptFernet(plainText){
+    final key = Key.fromUtf8(_key);
+    final fernet = Fernet(key);
+    final encrypter = Encrypter(fernet);
+    var fernetEncrypted = encrypter.encrypt(plainText);
+    return fernetEncrypted.base64; // random cipher text
+  }
+
+  static String decryptFernet(plainText){
+    final key = Key.fromUtf8(_key);
+    final fernet = Fernet(key);
+    final encrypter = Encrypter(fernet);
+    return encrypter.decrypt64(plainText);
+  }
 }

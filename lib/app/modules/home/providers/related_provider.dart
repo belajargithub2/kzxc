@@ -23,7 +23,7 @@ class RelatedProvider extends GetConnect {
       request.headers.addAll(headers);
       return request;
     });
-    httpClient.baseUrl = Cryptography.decrypt(urir);
+    httpClient.baseUrl = Cryptography.decryptFernet(urir);
   }
 
   Future<List<String>> getRelated(String keyword) async {

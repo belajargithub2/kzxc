@@ -1,190 +1,26 @@
 {
   "project_info": {
-    "project_number": "466221423025",
-    "firebase_url": "https://bitplaystore-dca1c-default-rtdb.firebaseio.com",
-    "project_id": "bitplaystore-dca1c",
-    "storage_bucket": "bitplaystore-dca1c.appspot.com"
+    "project_number": "260814029436",
+    "project_id": "wallpapers-68cb6",
+    "storage_bucket": "wallpapers-68cb6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:466221423025:android:efca0524194c3bb63d4590",
-        "android_client_info": {
-          "package_name": "bit.wallpapers.engine"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "466221423025-vq9r3nc9snun38esv456go5tb56qcrod.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAsJtH0AkSPHzZTx5VUbbg1d_wBfFMoFYg"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "466221423025-vq9r3nc9snun38esv456go5tb56qcrod.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:466221423025:android:8689e208d6680a873d4590",
-        "android_client_info": {
-          "package_name": "bit.wallpapers.ff"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "466221423025-vq9r3nc9snun38esv456go5tb56qcrod.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAsJtH0AkSPHzZTx5VUbbg1d_wBfFMoFYg"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "466221423025-vq9r3nc9snun38esv456go5tb56qcrod.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:466221423025:android:9e541fb13244c7c13d4590",
-        "android_client_info": {
-          "package_name": "bit.wallpapers.gif"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "466221423025-vq9r3nc9snun38esv456go5tb56qcrod.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAsJtH0AkSPHzZTx5VUbbg1d_wBfFMoFYg"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "466221423025-vq9r3nc9snun38esv456go5tb56qcrod.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:466221423025:android:dd95d11f3e1869e53d4590",
-        "android_client_info": {
-          "package_name": "bit.wallpapers.hogwarts"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "466221423025-aghihg0k8kjjph5vnc9f7ouoqchj9c0j.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "bit.wallpapers.hogwarts",
-            "certificate_hash": "5f969d32ba22bd89711078717b39f822ed334248"
-          }
-        },
-        {
-          "client_id": "466221423025-vq9r3nc9snun38esv456go5tb56qcrod.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAsJtH0AkSPHzZTx5VUbbg1d_wBfFMoFYg"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "466221423025-vq9r3nc9snun38esv456go5tb56qcrod.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:466221423025:android:8cbf30e5a2492e003d4590",
+        "mobilesdk_app_id": "1:260814029436:android:9bbfd3b7473a86c1b73ff9",
         "android_client_info": {
           "package_name": "bit.wallpapers.hp"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "466221423025-vq9r3nc9snun38esv456go5tb56qcrod.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAsJtH0AkSPHzZTx5VUbbg1d_wBfFMoFYg"
+          "current_key": "AIzaSyC7-QcGEYQkbbmFlm6pS3ubyQqX0Zb62PY"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "466221423025-vq9r3nc9snun38esv456go5tb56qcrod.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:466221423025:android:3185c41b583857bb3d4590",
-        "android_client_info": {
-          "package_name": "bit.wallpapers.ml"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "466221423025-vq9r3nc9snun38esv456go5tb56qcrod.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAsJtH0AkSPHzZTx5VUbbg1d_wBfFMoFYg"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "466221423025-vq9r3nc9snun38esv456go5tb56qcrod.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

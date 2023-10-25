@@ -1,5 +1,13 @@
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:wallpapers/app/modules/home/controllers/home_controller.dart';
 import 'package:wallpapers/app/utils/toast.dart';
 import 'package:get/get.dart';
@@ -9,6 +17,7 @@ class DetailController extends GetxController {
   final imageUrl = "".obs;
   final isLoading = false.obs;
   final homeC = Get.find<HomeController>();
+  List<int>? imagePath;
 
   @override
   void onInit() {
@@ -106,5 +115,58 @@ class DetailController extends GetxController {
       alertToast("Failed set wallpaper : $e}");
     }
     isLoading(false);
+  }
+
+  Future<void> shareImage() async {
+    try {
+      await getImage();
+      final temp = await getTemporaryDirectory();
+      final path = '${temp.path}/image.jpg';
+      File(path).writeAsBytesSync(imagePath!);
+      await Share.shareXFiles([XFile(path)], text: 'Image Shared').whenComplete(
+        () => homeC.showInterstitial(),
+      );
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> saveNetworkImage() async {
+    var status = await Permission.storage.status;
+    if (status.isPermanentlyDenied || status.isRestricted) {
+      openAppSettings();
+    } else {
+      await getImage();
+      await ImageGallerySaver.saveImage(
+        Uint8List.fromList(imagePath!),
+        quality: 100,
+        name: "homey",
+      );
+      var d = Get.snackbar("Success", "Image Saved!",
+          backgroundColor: Colors.amber);
+      d.close().then((_) => homeC.showInterstitial());
+    }
+  }
+
+  Future<void> getImage() async {
+    if (imagePath == null) {
+      Get.dialog(
+        Center(
+          child: Container(
+            padding: const EdgeInsets.all(50),
+            color: Colors.white,
+            child: const CircularProgressIndicator(),
+          ),
+        ),
+        name: "Loading . . .",
+        barrierDismissible: false,
+      );
+      var response = await Dio().get(
+        imageUrl.value,
+        options: Options(responseType: ResponseType.bytes),
+      );
+      imagePath = response.data;
+      Get.back();
+    }
   }
 }
