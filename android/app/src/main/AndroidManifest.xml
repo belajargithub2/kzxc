@@ -8,7 +8,7 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="Hogwarts Wallpapers 4K">
+        android:label="Homey">
         <!-- TODO replace STARTAPP with actual value -->
         <meta-data
             android:name="com.startapp.sdk.APPLICATION_ID"
